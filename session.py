@@ -15,17 +15,24 @@ class BrowserSession:
         self.browser = self.playwright.firefox.launch(
             headless=self.headless,
             args=[
-                "--disable-blink-features=AutomationControlled",
                 "--no-sandbox"
             ]
         )
 
+        # Versao anterior, creachá em python.
+        #
+        #self.context = self.browser.new_context(
+        #    viewport={"width": 1280, "height": 800},
+        #    user_agent=(
+        #        "Mozilla/5.0 (X11; Linux x86_64; rv:121.0) "
+        #        "Gecko/20100101 Firefox/121.0"
+        #    )
+        #)
+        #
+
+        # Versao de render um pouco mais segura deixando a cargo do playwright decidir oq fazer
         self.context = self.browser.new_context(
-            viewport={"width": 1280, "height": 800},
-            user_agent=(
-                "Mozilla/5.0 (X11; Linux x86_64; rv:121.0) "
-                "Gecko/20100101 Firefox/121.0"
-            )
+            viewport={"width": 1280, "height": 800}
         )
 
         self.page = self.context.new_page()
