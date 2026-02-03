@@ -8,6 +8,8 @@ def main():
 
     print("Título:", page.title())
 
+    input("Pressione ENTER no terminal para fechar o robô...")
+    
     session.stop()
 
 if __name__ == "__main__":
